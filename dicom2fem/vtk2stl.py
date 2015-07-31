@@ -11,11 +11,11 @@ def vtk2stl(fn_in, fn_out):
     reader.Update()
 
     gfilter = vtk.vtkGeometryFilter()
-    gfilter.SetInput(reader.GetOutput())
+    gfilter.SetInputConnection(reader.GetOutputPort())
 
     writer = vtk.vtkSTLWriter()
     writer.SetFileName(fn_out)
-    writer.SetInput(gfilter.GetOutput())
+    writer.SetInputConnection(gfilter.GetOutputPort())
     writer.Write()
 
 def main():
